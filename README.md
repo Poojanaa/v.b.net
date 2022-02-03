@@ -280,4 +280,57 @@ Volume after adding boxes : 18000<br>
 <br>                                  
 <br>                               
 <br>
-**6.Delegates string program**
+**6.Delegates string program**<br>
+using System;<br>
+
+namespace Exercises<br>
+{<br>
+    class Delegates<br>
+    {<br>
+        delegate string UppercaseDelegate(string input);<br>
+        static string UppercaseFirst(string input)<br>
+        {<br>
+            char[] buffer = input.ToCharArray();<br>
+            buffer[0] = char.ToUpper(buffer[0]);<br>
+            return new string(buffer);<br>
+        }<br>
+        static string UppercaseLast(string input)<br>
+        {<br>
+            char[] buffer = input.ToCharArray();<br>
+            buffer[buffer.Length - 1] = char.ToUpper(buffer[buffer.Length - 1]);<br>
+            return new string(buffer);<br>
+        }<br>
+        static string UppercaseAll(string input)<br>
+        {<br>
+            return input.ToUpper();<br>
+
+        }<br>
+        static void WriteOutput(string input,UppercaseDelegate del)<br>
+        {<br>
+            Console.WriteLine("Input String : {0}", input);<br>
+            Console.WriteLine("Output String : {0}", del(input));<br>
+        }<br>
+        static void Main()<br>
+        {<br>
+            WriteOutput("tom", new UppercaseDelegate(UppercaseFirst));<br>
+            WriteOutput("tom", new UppercaseDelegate(UppercaseLast));<br>
+            WriteOutput("tom", new UppercaseDelegate(UppercaseAll));<br>
+            Console.ReadLine();<br>
+        }<br>
+    }<br>
+}<br>
+<br>
+**Output:-**<br>
+Input String : tom<br>
+Output String : Tom<br>
+Input String : tom<br>
+Output String : toM<br>
+Input String : tom<br>
+Output String : TOM<br>
+<br>
+<br>
+**7.100 students register number using static constructor**<br>
+
+
+
+
