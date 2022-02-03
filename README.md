@@ -232,4 +232,52 @@ Grey Code equivalent of 123 :1000110<br>
 <br>
 <br>
 **5.Volume of 2 boxes**<br>
+using System;<br>
 
+namespace eXERCISES<br>
+{<br>
+    class BOX<br>
+    {<br>
+        float width;<br>
+        float height;<br>
+        float length;<br>
+        public float Volume<br>
+        {<br>
+            get { return width * height * length; }<br>
+        }<br>
+        public BOX(float width, float height, float length)<br>
+        {<br>
+            this.width = width;<br>
+            this.height = height;<br>
+            this.length = length;<br>
+        }<br>
+        public static float operator +(BOX box1, BOX box2)<br>
+        {<br>
+            return box1.Volume + box2.Volume;<br>
+        }<br>
+        public override string ToString()<br>
+        {<br>
+            return "box with width" + width + ",height" + height + "and length" + length;<br>
+        }<br>
+    }<br>
+    class OperatorOverloading<br>
+    {<br>
+        public static void Main()<br>
+        {<br>
+        BOX box1 = new BOX(10, 20, 30);<br>
+        BOX box2 = new BOX(25, 32, 15);<br>
+        Console.WriteLine("Volume of {0} is : {1}",box1,box1.Volume);<br>
+        Console.WriteLine("Volume of {0} is : {1}",box2,box2.Volume);<br>
+        Console.WriteLine("Volume after adding boxes : {0}",box1 + box2);<br>
+        }<br>
+    }<br>
+}<br>
+<br>
+**Output:-**<br>
+Volume of box with width10,height20and length30 is : 6000<br>
+Volume of box with width25,height32and length15 is : 12000<br>
+Volume after adding boxes : 18000<br>
+<br>                                  
+<br>                               
+<br>
+**6.Delegates string program**
