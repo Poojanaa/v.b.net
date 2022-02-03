@@ -182,22 +182,54 @@ namespace Exercises<br>
 }<br>
 **Output:-**<br>
 
-_____PERSONAL DETAILS_____
+_____PERSONAL DETAILS_____<br>
 
-Name :Abhijith
-Age :22
-Gender :Male
-Register Number:20190001
-Course :MCA
-Semester :5
+Name :Abhijith<br>
+Age :22<br>
+Gender :Male<br>
+Register Number:20190001<br>
+Course :MCA<br>
+Semester :5<br>
 
-_____MARKS DETAILS_____
+_____MARKS DETAILS_____<br>
 
-Marks in 5 subjects:77 80 98 95 90
-Total :440
-Average :88
-Grade :Distinction
+Marks in 5 subjects:77 80 98 95 90<br>
+Total :440<br>
+Average :88<br>
+Grade :Distinction<br>
 <br>
 <br>
-**4.Gray code**
+**4.Gray code**<br>
+using System;<br>
+
+namespace Exercises<br>
+{<br>
+    class GrayCode<br>
+    {<br>
+        static int getGray(int n)<br>
+        {<br>
+            return n ^ (n >> 1);<br>
+        }<br>
+        static void Main(string[] args)<br>
+        {<br>
+            int InputNum, GrayNum;<br>
+            Console.Write("\nEnter the decimal number:");<br>
+            InputNum = Convert.ToInt32(Console.ReadLine());<br>
+            Console.WriteLine("\n Binary equivalent of {0} : {1}", InputNum, Convert.ToString(InputNum, 2));<br>
+            GrayNum = getGray(InputNum);<br>
+            Console.WriteLine("\nGrey Code equivalent of {0} :{1}", InputNum, Convert.ToString(GrayNum, 2));<br>
+        }<br>
+    }<br>
+}<br>
+
+**Output:-**<br>
+
+Enter the decimal number:123<br>
+
+ Binary equivalent of 123 : 1111011<br>
+
+Grey Code equivalent of 123 :1000110<br>
+<br>
+<br>
+**5.Volume of 2 boxes**<br>
 
