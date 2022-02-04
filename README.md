@@ -464,3 +464,105 @@ Student  100 : 20210100<br>
 <br>
 <br>
 **8.Program to find the frequence of the word "is" in a given sentence**<br>
+using System;<br>
+
+namespace Exercises<br>
+{<br>
+    class FrequencyIS<br>
+    {<br>
+        static void Main(string[]args)<br>
+        {<br>
+            int count = 0;<br>
+            string inputString;<br>
+            Console.WriteLine("\n_____Frequency of word 'is'_____");<br>
+            Console.Write("\nEnter the input string:");<br>
+            inputString = Console.ReadLine();<br>
+            char[] separator = { ',', ' ', '.', '!', '\n' };<br>
+            string testString = inputString.ToLower();<br>
+            String[] outcomes = testString.Split(separator);<br>
+            foreach(String s in outcomes)<br>
+            {<br>
+                Console.WriteLine(s);<br>
+                if(s=="is")<br>
+                    count++;<br>
+            }<br>
+            Console.WriteLine("\n Number of 'is' in '" + inputString + "'is: "+ count);<br>
+        }<br>
+    }<br>
+}<br>
+<br>
+**Output:-**<br>
+____Frequency of word 'is'_____<br>
+
+Enter the input string:This statement is to check frequency of word is<br>
+this<br>
+statement<br>
+is<br>
+to<br>
+check<br>
+frequency<br>
+of<br>
+word<br>
+is<br>
+
+ Number of 'is' in 'This statement is to check frequency of word is'is: 2<br>
+<br>
+
+**9.program that benchmarks 2D,jagged array allocation**<br>
+using System;<br>
+using System.Diagnostics;<br>
+namespace Exercises<br>
+{<br>
+    class BenchmarkAllocation<br>
+    {<br>
+        const int _max = 100000;<br>
+        static void Main(string[]args)<br>
+        {<br>
+            var Arr2D = new int[100, 100];<br>
+            var ArrJagged = new int[100][];<br>
+            for(int i=0;i<100;i++)<br>
+            {<br>
+                ArrJagged[i] = new int[100];<br>
+            }<br>
+            var Stopwatch2D = Stopwatch.StartNew();<br>
+            for(int i=0;i<_max;i++)<br>
+            {<br>
+                for(int j=0;j<100;j++)<br>
+                {<br>
+                    for(int k=0;k<100;k++)<br>
+                    {<br>
+                        Arr2D[j, k] = k;<br>
+                    }<br>
+                }<br>
+            }<br>
+            Stopwatch2D.Stop();<br>
+            var StopwatchJagged = Stopwatch.StartNew();<br>
+            for(int i=0;i<_max;i++)<br>
+            {<br>
+                for(int j=0;j<100;j++)<br>
+                {<br>
+                    for(int k=0;k<100;k++)<br>
+                    {<br>
+                        ArrJagged[j][k] = k;<br>
+                    }<br>
+                }<br>
+            }<br>
+            StopwatchJagged.Stop();<br>
+            Console.Write("\n Time taken for allocation in case of 2D array:");<br>
+            Console.WriteLine(Stopwatch2D.Elapsed.TotalMilliseconds + "milliseconds");<br>
+            Console.Write("\n Time taken for allocation in case of Jagged array:");<br>
+            Console.WriteLine(StopwatchJagged.Elapsed.TotalMilliseconds + "milliseconds");<br>
+        }<br>
+    }<br>
+}<br>
+<br>
+<br>
+**Output:-**<br>
+
+ Time taken for allocation in case of 2D array:3633.5275milliseconds<br>
+
+ Time taken for allocation in case of Jagged array:2700.978milliseconds<br>
+ <br>
+ <br>
+ **10.Program to find the sum of the value on diagonal of the matrix**<br>
+ 
