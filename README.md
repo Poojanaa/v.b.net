@@ -565,4 +565,164 @@ namespace Exercises<br>
  <br>
  <br>
  **10.Program to find the sum of the value on diagonal of the matrix**<br>
- 
+ using System;<br>
+
+namespace Exercises<br>
+{<br>
+    class SumOfDiagonals<br>
+    {<br>
+        static void Main(string[]args)<br>
+        {<br>
+            int MaxRow, MaxCol, Sum = 0;<br>
+            int[,] Matrix;<br>
+            Console.WriteLine("\n_____SUM OF DIAGONAL OF A MATRIX_____\n");<br>
+            Console.Write("\n Enter the number of rows:");<br>
+            MaxRow = Convert.ToInt32(Console.ReadLine());<br>
+            Console.Write("\n Enter the number of columns:");<br>
+            MaxCol = Convert.ToInt32(Console.ReadLine());<br>
+            if(MaxRow!=MaxCol)<br>
+            {<br>
+                Console.WriteLine("\n the Dimensions enterd are not of Square Matrix.");<br>
+                Console.WriteLine("\n Exiting the Program..");<br>
+                return;<br>
+            }<br>
+            Matrix = new int[MaxRow, MaxCol];<br>
+            for(int i=0;i<MaxRow;i++)<br>
+            {<br>
+                for(int j=0;j<MaxCol;j++)<br>
+                {<br>
+                    Console.Write("\n Enter the ({0},{1})th elsement of the matrix:", (i + 1), (j + 1));<br>
+                    Matrix[i, j] = Convert.ToInt32(Console.ReadLine());<br>
+                }<br>
+            }<br>
+            Console.WriteLine("\n the entered Matrix is:");<br>
+            for(int i=0;i<MaxRow;i++)<br>
+            {<br>
+                for(int j=0;j<MaxCol;j++)<br>
+                {<br>
+                    Console.Write(" " + Matrix[i, j]);<br>
+                    if(i==j)<br>
+                    {<br>
+                        Sum += Matrix[i, j];<br>
+                    }<br>
+                }<br>
+                Console.WriteLine();<br>
+            }<br>
+            Console.WriteLine("\nThe Sum of Diagonal is" + Sum);<br>
+        }<br>
+    }<br>
+}<br>
+<br>
+<br>
+**Output:-**<br>
+
+_____SUM OF DIAGONAL OF A MATRIX_____<br>
+
+
+ Enter the number of rows:3<br>
+
+ Enter the number of columns:3<br>
+
+ Enter the (1,1)th elsement of the matrix:1<br>
+
+ Enter the (1,2)th elsement of the matrix:2<br>
+
+ Enter the (1,3)th elsement of the matrix:3<br>
+
+ Enter the (2,1)th elsement of the matrix:4<br>
+
+ Enter the (2,2)th elsement of the matrix:5<br>
+
+ Enter the (2,3)th elsement of the matrix:6<br>
+
+ Enter the (3,1)th elsement of the matrix:7<br>
+
+ Enter the (3,2)th elsement of the matrix:8<br>
+
+ Enter the (3,3)th elsement of the matrix:9<br>
+
+ the entered Matrix is:<br>
+ 1 2 3<br>
+ 4 5 6<br>
+ 7 8 9<br>
+
+The Sum of Diagonal is 15<br>
+ <br>
+<br>
+**11.Program to create ,check and read the content of file**<br>
+using System;
+using System.IO;
+namespace eXERCISES
+{
+    class FileRead
+    {
+        public static void Main()
+        {
+            string fileName;
+            while(true)
+            {
+                Console.WriteLine("\n_____MENU_____\n");
+                Console.WriteLine("\n1.Create a File");
+                Console.WriteLine("\n2.Existance of the File");
+                Console.WriteLine("\n3.Read the contents of the File");
+                Console.WriteLine("\n4.Exit");
+                Console.Write("\n Enter your choice:");
+                int ch = int.Parse(console.Readline());
+                switch(ch)
+                { 
+                    case1:
+                        Console.Write("\n Enter the file name to create:");
+                        fileName = Console.ReadLine();
+                        Console.WriteLine("\n Write the Contents to the File:\n");
+                        string r = Console.ReadLine();
+                        using(StreamWriter fileStr=File.CreateText(fileName))
+                        {
+                            fileStr.WriteLine(r);
+                        }
+                        Console.WriteLine("File is Created...");
+                        break;
+                    case2:
+                        Console.Write("\n Enter the file name:");
+                        fileName = Console.ReadLine();
+                        if(File.Exists(fileName))
+                        {
+                            Console.WriteLine("File exists...");
+                        }
+                        else
+                        {
+                            Console.WriteLine("File does not exist in the current directory!");
+                        }
+                        break;
+                    case3:
+                        Console.Write("Enter the file name to read the contents:\n");
+                        fileName = Console.ReadLine();
+                        if(File.Exists(fileName))
+                        {
+                            using (StreamReader sr=File.OpenText(fileName))
+                            {
+                                string s = "";
+                                Console.WriteLine("Here is the content of the file:");
+                                while((s=sr.ReadLine())!=null)
+                                {
+                                    Console.WriteLine(s);
+                                }
+                                Console.WriteLine("")
+                            }
+                        }
+                        else
+                        {
+                            Console.WriteLine("File does not exists");
+                        }
+                        break;
+                    case4:
+                        Console.WriteLine("\n Exiting...");
+                        return;
+                        default:
+                        Console.WriteLine("\n Invalid choice");
+                        break;
+
+                 }
+            }
+        }
+    }
+}
