@@ -650,79 +650,134 @@ The Sum of Diagonal is 15<br>
  <br>
 <br>
 **11.Program to create ,check and read the content of file**<br>
-using System;
-using System.IO;
-namespace eXERCISES
-{
-    class FileRead
-    {
-        public static void Main()
-        {
-            string fileName;
-            while(true)
-            {
-                Console.WriteLine("\n_____MENU_____\n");
-                Console.WriteLine("\n1.Create a File");
-                Console.WriteLine("\n2.Existance of the File");
-                Console.WriteLine("\n3.Read the contents of the File");
-                Console.WriteLine("\n4.Exit");
-                Console.Write("\n Enter your choice:");
-                int ch = int.Parse(console.Readline());
-                switch(ch)
-                { 
-                    case1:
-                        Console.Write("\n Enter the file name to create:");
-                        fileName = Console.ReadLine();
-                        Console.WriteLine("\n Write the Contents to the File:\n");
-                        string r = Console.ReadLine();
-                        using(StreamWriter fileStr=File.CreateText(fileName))
-                        {
-                            fileStr.WriteLine(r);
-                        }
-                        Console.WriteLine("File is Created...");
-                        break;
-                    case2:
-                        Console.Write("\n Enter the file name:");
-                        fileName = Console.ReadLine();
-                        if(File.Exists(fileName))
-                        {
-                            Console.WriteLine("File exists...");
-                        }
-                        else
-                        {
-                            Console.WriteLine("File does not exist in the current directory!");
-                        }
-                        break;
-                    case3:
-                        Console.Write("Enter the file name to read the contents:\n");
-                        fileName = Console.ReadLine();
-                        if(File.Exists(fileName))
-                        {
-                            using (StreamReader sr=File.OpenText(fileName))
-                            {
-                                string s = "";
-                                Console.WriteLine("Here is the content of the file:");
-                                while((s=sr.ReadLine())!=null)
-                                {
-                                    Console.WriteLine(s);
-                                }
-                                Console.WriteLine("")
-                            }
-                        }
-                        else
-                        {
-                            Console.WriteLine("File does not exists");
-                        }
-                        break;
-                    case4:
-                        Console.WriteLine("\n Exiting...");
-                        return;
-                        default:
-                        Console.WriteLine("\n Invalid choice");
-                        break;
+using System;<br>
+using System.IO;<br>
+namespace eXERCISES<br>
+{<br>
+    class FileRead<br>
+    {<br>
+        public static void Main()<br>
+        {<br>
+            string fileName;<br>
+            while (true)<br>
+            {<br>
+                Console.WriteLine("\n_____MENU_____\n");<br>
+                Console.WriteLine("\n1.Create a File");<br>
+                Console.WriteLine("\n2.Existance of the File");<br>
+                Console.WriteLine("\n3.Read the contents of the File");<br>
+                Console.WriteLine("\n4.Exit");<br>
+                Console.Write("\n Enter your choice:");<br>
+                int ch = int.Parse(Console.ReadLine());<br>
+                switch (ch)<br>
+                {<br>
+                    case 1:<br>
+                Console.Write("\n Enter the file name to create:");<br>
+                fileName = Console.ReadLine();<br>
+                Console.WriteLine("\n Write the Contents to the File:\n");<br>
+                string r = Console.ReadLine();<br>
+                using (StreamWriter fileStr = File.CreateText(fileName))<br>
+                {<br>
+                    fileStr.WriteLine(r);<br>
+                }<br>
+                Console.WriteLine("File is Created...");<br>
+                break;<br>
+                case 2:<br>
+                Console.Write("\n Enter the file name:");<br>
+                fileName = Console.ReadLine();<br>
+                if (File.Exists(fileName))<br>
+                {<br>
+                    Console.WriteLine("File exists...");<br>
+                }<br>
+                else<br>
+                {<br>
+                    Console.WriteLine("File does not exist in the current directory!");<br>
+                }<br>
+                break;<br>
+                case 3:<br>
+                Console.Write("Enter the file name to read the contents:\n");<br>
+                fileName = Console.ReadLine();<br>
+                if (File.Exists(fileName))<br>
+                {<br>
+                    using (StreamReader sr = File.OpenText(fileName))<br>
+                    {<br>
+                        string s = "";<br>
+                        Console.WriteLine("Here is the content of the file:");<br>
+                        while ((s = sr.ReadLine()) != null)<br>
+                        {<br>
+                            Console.WriteLine(s);<br>
+                        }<br>
+                        Console.WriteLine("");<br>
+                    }<br>
+                }<br>
+                else<br>
+                {<br>
+                    Console.WriteLine("File does not exists");<br>
+                }<br>
+                break;<br>
+                case 4:<br>
+                Console.WriteLine("\n Exiting...");<br>
+                return;<br>
+                default :<br>
+                      Console.WriteLine("\n Invalid choice");<br>
+                break;<br>
+                }<br>
+            }<br>
+        }<br>
+    }<br>
+}<br>
+<br>
+<br>
+**Output:-**<br>
 
-                 }
-            }
-        }
-    }
-}
+_____MENU_____<br>
+
+
+1.Create a File<br>
+
+2.Existance of the File<br>
+
+3.Read the contents of the File<br>
+
+4.Exit<br>
+
+ Enter your choice:2<br>
+
+ Enter the file name:Newfile.txt<br>
+File exists...<br>
+
+_____MENU_____<br>
+
+
+1.Create a File<br>
+
+2.Existance of the File<br>
+
+3.Read the contents of the File<br>
+
+4.Exit<br>
+
+ Enter your choice:3<br>
+Enter the file name to read the contents:<br>
+Newfile.txt<br>
+Here is the content of the file:<br>
+Hello...How are you??<br>
+
+
+_____MENU_____<br>
+
+
+1.Create a File<br>
+
+2.Existance of the File<br>
+
+3.Read the contents of the File<br>
+
+4.Exit<br>
+
+ Enter your choice:4<br>
+
+ Exiting...<br>
+ <br>
+ <br>
+ **12.Program to perform file comparison**<br>
+ 
