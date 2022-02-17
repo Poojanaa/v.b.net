@@ -800,7 +800,7 @@ namespace Exercises<br>
             }<br>
             else if (!File.Exists(file2))<br>
             {<br>
-                Console.WriteLine("second file does not exist!");<br>
+                Console.WriteLine("second file does not exist");<br>
             }<br>
             else if(File.ReadAllText(file1)==File.ReadAllText(file2))<br>
             {<br>
@@ -816,5 +816,73 @@ namespace Exercises<br>
 <br>
 <br>
 **Output:-**<br>
-**13.Program to implement Icomparable interface.**
+Enter the first file path:C:\Users\ADMIN\Desktop\1st msc\file comparision\F1.txt<br>
+Enter the second path:C:\Users\ADMIN\Desktop\1st msc\file comparision\F2.txt<br>
+Both files contain the same content<br>
+<br>
+Enter the first file path:C:\Users\ADMIN\Desktop\1st msc\file comparision\f1.txt<br>
+Enter the second path:C:\Users\ADMIN\Desktop\1st msc\file comparision\f3.txt<br>
+Contents of the files are not same<br>
+<br>
+**13.Program to implement Icomparable interface.**<br>
+using System;
+namespace Exercises
+{
+    class Fraction : IComparable
+    {
+        int z, n;
+        public Fraction(int z, int n)
+        {
+            this.z = z;
+            this.n = n;
+        }
+        public static Fraction Operator + (Fraction a, Fraction b)
+        {
+            return new Fraction(a.z* b.n + a.n* b.z, a.n* b.n);
+    }
+    public static Fraction operator *(Fraction a, Fraction b)
+    {
+        return new Fraction(a.z * b.z, a.n * b.n);
+    }
+    public interface compareTo(object Obj)
+        {
+            Fraction f = (Fraction)Obj;
+            if((float) z/n<(float)f.z/f.n) 
+              return-1;
+            elseif((float) z/n>(float) f.z/f.n)
+               return 1;
+            else
+                return 0;
+        }
+public override string Tostring()
+{
+    return z + "/" + nameof;
+}
+}
+class ICompInterface
+{
+    public static void Main()
+    {
+        Fraction[] a =
+        {
+            new Fraction(5,2),
+            new Fraction(29,6),
+            new Fraction(4,5),
+            new Fraction(10,8),
+            new Fraction(34,7)
+        };
+        Array.Sort(a);
+        Console.WriteLine("Implementing the IComparable interface in" + "Displaying Fraction:");
+        foreach(Fraction f in a)
+        {
+            Console.WriteLine(f + " ");
+
+        }
+        Console.WriteLine();
+        Console.ReadLine();
+    }
+}
+
+    
+
  
