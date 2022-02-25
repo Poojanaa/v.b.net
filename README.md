@@ -1004,6 +1004,33 @@ AgeIsNegative Exception:Age cannot be negative<br>
 Execution of Finally Block is done.<br>
 <br>
 <br>
+**16.Write a program on fibonacci series**<br>
+using System;<br>
+public class FibonacciExample<br>
+{<br>
+    public static void Main(string[] args)<br>
+    {<br>
+        int n1 = 0, n2 = 1, n3, i, number;<br>
+        Console.Write("Enter the number of elements:");<br>
+        number = int.Parse(Console.ReadLine());<br>
+        Console.Write(n1 + "" + n2 + "");<br>
+        for(i=2;i<number;++i)<br>
+        {<br>
+            n3 = n1 + n2;<br>
+            Console.Write(n3 + "");<br>
+            n1 = n2;<br>
+            n2 = n3;<br>
+        }<br>
+    }<br>
+}<br>
+<br>
+**Output:-**<br>
+Enter the number of elements:15<br>
+0 1 1 2 3 5 8 13 21 34 55 89 144 233 377<br>
+<br>
+<br>
+**17.Write a program on prime number**<br>
+
 
 
     
