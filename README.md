@@ -1004,7 +1004,7 @@ AgeIsNegative Exception:Age cannot be negative<br>
 Execution of Finally Block is done.<br>
 <br>
 <br>
-**16.Write a program on fibonacci series**<br>
+**16.Write a program to print fibonacci series**<br>
 using System;<br>
 public class FibonacciExample<br>
 {<br>
@@ -1029,7 +1029,171 @@ Enter the number of elements:15<br>
 0 1 1 2 3 5 8 13 21 34 55 89 144 233 377<br>
 <br>
 <br>
-**17.Write a program on prime number**<br>
+**17.Write a program to check prime number**<br>
+using System;<br>
+public class PrimeNumberExample<br>
+{<br>
+    public static void Main(string[] args)<br>
+    {<br>
+        int n, i, m = 0, flag = 0;<br>
+        Console.Write("Enter the number to check Prime:");<br>
+        n = int.Parse(Console.ReadLine());<br>
+        m = n / 2;<br>
+        for(i=2;i<=m;i++)<br>
+        {<br>
+            if(n%i==0)<br>
+            {<br>
+                Console.Write("Number is not Prime.");<br>
+                flag = 1;<br>
+                break;<br>
+            }<br>
+        }<br>
+        if (flag == 0)<br>
+            Console.Write("Number is Prime.");<br>
+    }<br>
+}<br>
+<br>
+**Output:-**<br>
+Enter the number to check Prime:17<br>
+Number is Prime.<br>
+Enter the number to check Prime:57<br>
+Number is not Prime.<br>
+<br>
+<br>
+**18.Write a program to check palindrome number**<br>
+using System;<br>
+public class PalindromeExample<br>
+{<br>
+    public static void Main(string[] args)<br>
+    {<br>
+        int n, r, sum = 0, temp;<br>
+        Console.Write("Enter the number:");<br>
+        n = int.Parse(Console.ReadLine());<br>
+        temp = n;<br>
+        while(n>0)<br>
+        {<br>
+            r = n % 10;<br>
+            sum = (sum * 10) + r;<br>
+            n = n / 10;<br>
+        }<br>
+        if (temp == sum)<br>
+            Console.Write("Number is Palindrome.");<br>
+        else<br>
+            Console.Write("Number is not Palindrome.");<br>
+    }<br>
+}<br>
+**Output:-**<br>
+Enter the number:121<br>
+Number is Palindrome.<br>
+<br>
+Enter the number:123<br>
+Number is not Palindrome.<br>
+<br>
+<br>
+**19.Write a program to print factorial of a number**<br>
+using System;<br>
+public class FactorialExample<br>
+{<br>
+    public static void Main(string[] args)<br>
+    {<br>
+        int i, fact = 1, number;<br>
+        Console.Write("Enter any Number:");<br>
+        number = int.Parse(Console.ReadLine());<br>
+        for(i=1;i<=number;i++)<br>
+        {<br>
+            fact = fact * i;<br>
+        }<br>
+        Console.Write("Factorial of" + number + "is:" + fact);<br>
+    }<br>
+}<br>
+<br>
+**Output:-**<br>
+Enter any Number:6<br>
+Factorial of6is:720<br>
+<br>
+<br>
+**20.Write a program to check armstrong number**<br>
+using System;<br>
+public class ArmstrongExample<br>
+{<br>
+    public static void Main(string[] args)<br>
+    {<br>
+        int n,r,sum=0,temp;<br>
+        Console.Write("Enter the number=");<br>
+        n=int.Parse(Console.ReadLine());<br>
+        temp=n;<br>
+        while(n>0)<br>
+        {<br>
+            r=n%10;<br>
+            sum=sum+(r* r* r);<br>
+            n=n/10;<br>
+        }<br>
+        if (temp == sum)<br>
+             Console.Write("Armstrong Number.");<br>
+        else<br>
+             Console.Write("Not Armstrong Number.");<br>
+     }<br>
+}<br>
+**Output:-**<br>
+Enter the number=371<br>
+Armstrong Number.<br>
+Enter the number=342<br>
+Not Armstrong Number.<br>
+<br>
+<br>
+**21.write program to print sum of digits.**<br>
+using System;<br>
+public class SumExample<br>
+{<br>
+    public static void Main(string[] args)<br>
+    {<br>
+        int n, sum = 0, m;<br>
+        Console.Write("Enter a number:");<br>
+        n = int.Parse(Console.ReadLine());<br>
+        while(n>0)<br>
+        {<br>
+            m = n % 10;<br>
+            sum = sum + m;<br>
+            n = n / 10;<br>
+        }<br>
+        Console.Write("Sum is=" + sum);<br>
+    }<br>
+}<br>
+<br>
+**Output:-**<br>
+Enter a number:23<br>
+Sum is=5<br>
+<br>
+Enter a number:642<br>
+Sum is=12<br>
+<br>
+<br>
+**22.Write a program to reverse given number**<br>
+using System;<br>
+public class ReverseExample<br>
+{<br>
+    public static void Main(string[] args)<br>
+    {<br>
+        int n, reverse = 0, rem;<br>
+        Console.Write("Enter a number:");<br>
+        n = int.Parse(Console.ReadLine());<br>
+        while(n!=0)<br>
+        {<br>
+            rem = n % 10;<br>
+            reverse = reverse * 10 + rem;<br>
+            n/=10;<br>
+        }<br>
+        Console.Write("Reversed Number:" + reverse);<br>
+    }<br>
+}<br>
+<br>
+**Output:-**<br>
+Enter a number:234<br>
+Reversed Number:432<br>
+<br>
+<br>
+
+
 
 
 
