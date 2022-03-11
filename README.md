@@ -1,5 +1,6 @@
 **# List of .Net programs for 1st semester MSc**<br>
-**1.Binary Triangle<br>**
+**PART-A**<br>
+**1.Binary Triangle**<br>
 using System;<br>
 
 namespace Exercises<br><br>
@@ -1192,6 +1193,88 @@ Enter a number:234<br>
 Reversed Number:432<br>
 <br>
 <br>
+**PART-B**<br>
+**23.Write a program to convert Digits to Words.**<br>
+![image](https://user-images.githubusercontent.com/98141711/157806529-5fea4d89-1535-4e4b-b903-472b5c793ed9.png)<br>
+using System;<br>
+using System.Collections.Generic;<br>
+using System.ComponentModel;<br>
+using System.Data;<br>
+using System.Drawing;<br>
+using System.Linq;<br>
+using System.Text;<br>
+using System.Threading.Tasks;<br>
+using System.Windows.Forms;<br>
+
+namespace digittoword<br>
+{<br>
+    public partial class Form1 : Form<br>
+    {<br>
+        public Form1()<br>
+        {<br>
+            InitializeComponent();<br>
+        }<br>
+
+        private void button1_Click(object sender, EventArgs e)<br>
+        {<br>
+            label1.Text = NumtoWord(long.Parse(txt_num.Text));<br>
+            label1.Visible = true;<br>
+        }<br>
+        public string NumtoWord(long number)<br>
+        {<br>
+            string word = "";
+            if(number==0)<br>
+            {<br>
+                return "{Zero";<br>
+            }<br>
+            if(number<0)<br>
+            {<br>
+                return "Minus" + Math.Abs(number);<br>
+            }<br>
+            if(number/1000000>0)<br>
+            {<br>
+                word += NumtoWord(number / 10000000) + "Corer";<br>
+                number %= 10000000;<br>
+            }<br>
+            if(number/100000>0)<br>
+            {<br>
+                word += NumtoWord(number / 100000) + "Lacs";<br>
+                number %= 100000;<br>
+            }<br>
+            if(number/100>0)<br>
+            {<br>
+                word += NumtoWord(number / 100) + "Hundred";<br>
+                number %= 100;<br>
+            }<br>
+            if(number>0)<br>
+            {<br>
+                string[] units = new string[] { "Zero", "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine","Ten","Eleven", "Twelve", "Thirteen", "Fourteen", "Fifteen", "Sixteen", "Seventeen", "Eighteen", "Nineteen" };<br>
+                string[] Tens = new string[] { "Zero", "Ten", "Twenty", "Thirty", "Fourty", "Fifty", "Sixty", "Seventy", "Eighty", "Ninety" };<br>
+                if(number<20)<br>
+                {<br>
+                    word += units[number];<br>
+                }<br>
+                else<br>
+                {<br>
+                    word += Tens[number / 10];<br>
+                    if(number%10>0)<br>
+                    {<br>
+                        word += units[number % 10];<br>
+                    }<br>
+                }<br>
+            }<br>
+            return word;<br>
+        }<br>
+    }<br>
+}<br>
+<br>
+**output:-**<br>
+![image](https://user-images.githubusercontent.com/98141711/157806406-4ae04125-0af1-4742-a06e-f0355418dbec.png)<br>
+<br>
+<br>
+
+
+
 
 
 
