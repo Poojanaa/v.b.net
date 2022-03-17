@@ -1272,6 +1272,53 @@ namespace digittoword<br>
 ![image](https://user-images.githubusercontent.com/98141711/157806406-4ae04125-0af1-4742-a06e-f0355418dbec.png)<br>
 <br>
 <br>
+**24.C# Program to Create a Program Bar Control.**<br>
+
+![image](https://user-images.githubusercontent.com/98141711/158750343-28ccd493-8ac1-463b-ab46-462d1c0ac9f2.png)<br>
+using System;<br>
+using System.ComponentModel;<br>
+using System.Threading;<br>
+using System.Windows.Forms;<br>
+
+namespace progress_bar_control<br>
+{<br>
+    public partial class Form1 : Form<br>
+    {<br>
+        public Form1()<br>
+        {<br>
+            InitializeComponent();<br>
+        }<br>
+
+        private void backgroundWorker1_DoWork(object sender, DoWorkEventArgs e)<br>
+        {<br>
+            for(int i=1;i<=100;i++)<br>
+            {<br>
+                Thread.Sleep(50);<br>
+                backgroundWorker1.ReportProgress(i);<br>
+            }<br>
+        }<br>
+
+        private void Form1_Load(object sender, EventArgs e)<br>
+        {<br>
+            backgroundWorker1.WorkerReportsProgress = true;<br>
+            backgroundWorker1.RunWorkerAsync();<br>
+        }<br>
+
+        private void backgroundWorker1_ProgressChanged(object sender, ProgressChangedEventArgs e)<br>
+        {<br>
+            progressBar1.Value = e.ProgressPercentage;<br>
+            this.Text = "Progress:" + e.ProgressPercentage.ToString() + "%";<br>
+        }<br>
+    }<br>
+}<br>
+<br>
+**Output:-**<br>
+![image](https://user-images.githubusercontent.com/98141711/158750602-314c4903-6823-4656-9000-d92a19c85682.png)<br>
+<br>
+<br>
+**25.**
+
+
 
 
 
