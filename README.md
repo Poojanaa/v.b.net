@@ -1316,7 +1316,169 @@ namespace progress_bar_control<br>
 ![image](https://user-images.githubusercontent.com/98141711/158750602-314c4903-6823-4656-9000-d92a19c85682.png)<br>
 <br>
 <br>
-**25.**
+**25.Develop a winform application to create flat**<br>
+![image](https://user-images.githubusercontent.com/98141711/158945035-3ea6007c-51af-46ef-bb8b-7e295858a433.png)<br>
+using System;<br>
+using System.Collections.Generic;<br>
+using System.ComponentModel;<br>
+using System.Data;<br>
+using System.Drawing;<br>
+using System.Linq;<br>
+using System.Text;<br>
+using System.Threading.Tasks;<br>
+using System.Windows.Forms;<br>
+namespace flat_clock<br>
+{<br>
+    public partial class Form1 : Form<br>
+    {<br>
+        public Form1()<br>
+        {<br>
+            InitializeComponent();<br>
+        }<br>
+
+        private void Form1_Load(object sender, EventArgs e)<br>
+        {<br>
+            System.Timers.Timer timer = new System.Timers.Timer();<br>
+            timer.Interval = 1000;//1s<br>
+            timer.Elapsed += Timer_Elapsed;<br>
+            timer.Start();<br>
+        }<br>
+        private void Timer_Elapsed(object sender, System.Timers.ElapsedEventArgs e)<br>
+        {<br>
+            circularProgressBar1.Invoke((MethodInvoker)delegate<br>
+            {<br>
+                circularProgressBar1.Text = DateTime.Now.ToString("hh:mm:ss");<br>
+                circularProgressBar1.SubscriptText = DateTime.Now.ToString("tt");//AM or PM<br>
+            });<br>
+        }<br>
+    }<br>
+}<br>
+<br>
+**Output:-**<br>
+
+![image](https://user-images.githubusercontent.com/98141711/158944902-baf8e577-df6b-4588-bd71-5e00ac6e154d.png)<br>
+<br>
+<br>
+**26.C# Progarm to perform a number guessing game.**<br>
+using System;<br>
+using System.Collections.Generic;<br>
+using System.ComponentModel;<br>
+using System.Data;<br>
+using System.Drawing;<br>
+using System.Linq;<br>
+using System.Text;<br>
+using System.Threading.Tasks;<br>
+using System.Windows.Forms;<br>
+
+namespace guessing_game<br>
+{<br>
+    public partial class Form1 : Form<br>
+    {<br>
+        static Random r = new Random();<br>
+        int value;<br>
+        int guessnum;<br>
+        int win = 10;<br>
+        int guess = 1;<br>
+        TextBox textBox1;<br>
+        RichTextBox richTextBox1;<br>
+        RichTextBox richTextBox2;<br>
+        Label label4;<br>
+        Button button1;<br>
+        public Form1()<br>
+        {<br>
+            InitializeComponent();<br>
+            value = r.Next(10);<br>
+            this.Controls.Clear();<br>
+            this.BackColor = Color.SkyBlue;<br>
+            this.AutoSize = true;<br>
+            this.Padding = new Padding(16);<br>
+
+            Label label = new Label();<br>
+            label.Text = "Pick a number between 1 and 10";<br>
+            label.Bounds = new Rectangle(10, 20, 340, 40);<br>
+            label.Font = new Font("Arial", 16);<br>
+            textBox1 = new TextBox();<br>
+            textBox1.Bounds = new Rectangle(20, 50, 120, 80);<br>
+            textBox1.Font = new Font("Arial", 24);<br>
+            button1 = new Button();<br>
+            button1.Text = " Check Your Guess ";<br>
+            button1.Bounds = new Rectangle(160, 50, 120, 40);<br>
+            button1.BackColor = Color.LightGray;<br>
+            button1.Click += new EventHandler(button1_Click);<br>
+            Label label2 = new Label();<br>
+            label2.Text = "Low Guess";<br>
+            label2.Bounds = new Rectangle(20, 150, 160, 40);<br>
+            label2.Font = new Font("Arial", 18);<br>
+            richTextBox1 = new RichTextBox();<br>
+            richTextBox1.Bounds = new Rectangle(20, 190, 160, 300);<br>
+            richTextBox1.Font = new Font("Arial", 16);<br>
+            Label label3 = new Label();<br>
+            label3.Text = "High Guess";<br>
+            label3.Bounds = new Rectangle(180, 150, 160, 40);<br>
+            label3.Font = new Font("Arial", 18);<br>
+            richTextBox2 = new RichTextBox();<br>
+            richTextBox2.Bounds = new Rectangle(180, 190, 160, 300);<br>
+            richTextBox2.Font = new Font("Arial", 16);<br>
+            label4 = new Label();<br>
+            label4.Bounds = new Rectangle(20, 100, 340, 40);<br>
+            label4.Font = new Font("Arial", 16);<br>
+            this.Controls.Add(label);<br>
+            this.Controls.Add(textBox1);<br>
+            this.Controls.Add(button1);<br>
+            this.Controls.Add(label4);<br>
+            this.Controls.Add(label2);<br>
+            this.Controls.Add(label3);<br>
+            this.Controls.Add(richTextBox1);<br>
+            this.Controls.Add(richTextBox2);<br>
+        }<br>
+        private void button1_Click(object sender, EventArgs e)<br>
+        {<br>
+            if (textBox1.Text == "")<br>
+            {<br>
+                return;<br>
+            }<br>
+            guessnum = Convert.ToInt32(textBox1.Text);<br>
+            textBox1.Text = String.Empty;<br>
+            if (win >= 0)<br>
+            {<br>
+                if (guessnum == value)<br>
+                {<br>
+                    MessageBox.Show("You have guessed the number! \n The number was " + value);<br>
+                    InitializeComponent();<br>
+                }<br>
+                else if (guessnum < value)<br>
+                {<br>
+                    richTextBox1.Text += guessnum + "\n";<br>
+                    MessageBox.Show("wrong Guess and number of guesses left are  " + (10 - guess));<br>
+
+                }<br>
+                else if (guessnum > value)<br>
+                {<br>
+                    richTextBox2.Text += guessnum + "\n";<br>
+                    MessageBox.Show("wrong Guess and number of guesses left are  " + (10 - guess));<br>
+
+                }<br>
+                guess++;<br>
+                win--;<br>
+            }<br>
+            if (guess == 11)<br>
+            {<br>
+                label4.Text = "You loose,Correct Guess is " + value;<br>
+            }<br>
+        }<br>
+
+    }<br>
+}<br>
+<br>
+**Output:-**<br>
+![image](https://user-images.githubusercontent.com/98141711/158956505-0c8fca29-1808-40a1-9b7e-f5834604c589.png)<br>
+![image](https://user-images.githubusercontent.com/98141711/158955228-b6543429-4fe0-4e73-b468-be76582a0406.png)<br>
+<br>
+<br>
+<br>
+
+
+
 
 
 
