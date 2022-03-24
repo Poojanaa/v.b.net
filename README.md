@@ -1476,9 +1476,104 @@ namespace guessing_game<br>
 <br>
 <br>
 <br>
+**27.Develop an application to create a notepad.**<br>
+using System;
+using System.IO;
+using System.Windows.Forms;
+using System.Drawing;
+
+namespace notepad
+{
+    class NotepadForm : Form
+    {
+        private string fileName;
+        private RichTextBox txtContent;
+        private ToolBar toolBar1 ;
+        internal NotepadForm()
+        {
+            fileName = null;
+            initializeComponents();
+        }
+        void initializeComponents()
+        {
+            this.Text = "My notepad";
+            this.MinimumSize = new Size(600, 450);
+            this.FormClosing += new FormClosingEventHandler(NotepadClosing);
+            this.MaximizeBox = true;
+            toolBar1 = new ToolBar();
+            toolBar1.Font = new Font("Arial", 16);
+            toolBar1.Padding = new Padding(4);
+            toolBar1.ButtonClick += new ToolBarButtonClickEventHandler(toolBar1Clicked);
+            ToolBarButton toolBar1Button1= new ToolBarButton();
+            ToolBarButton toolBar1Button2 = new ToolBarButton();
+            ToolBarButton toolBar1Button3 = new ToolBarButton();
+            toolBar1Button1.Text = "New";
+            toolBar1Button2.Text = "Open";
+            toolBar1Button3.Text = "Save";
+            toolBar1.Buttons.Add(toolBar1Button1);
+            toolBar1.Buttons.Add(toolBar1Button2);
+            toolBar1.Buttons.Add(toolBar1Button3);
+            txtContent = new RichTextBox();
+            txtContent.Size = this.ClientSize;
+            txtContent.Height = toolBar1.Height;
+            txtContent.Top = toolBar1.Height;
+            txtContent.Anchor = AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Top | AnchorStyles.Bottom;
+            txtContent.Font = new Font("Arial", 16);
+            txtContent.AcceptsTab = true;
+            txtContent.Padding = new Padding(8);
+            this.Controls.Add(toolBar1);
+            this.Controls.Add(txtContent);
+        }
+        private void toolBar1Clicked(Object sender,ToolBarButtonClickEventArgs e)
+        {
+            saveFile();
+            switch (toolBar1.Buttons.IndexOf(e.Button))
+            {
+                case 0:this.Text += "My notepad";
+                    txtContent.Text = string.Empty;
+                    fileName = null;
+                    break;
+                case 1:OpenFileDialog openDlg = new OpenFileDialog();
+                        if(DialogResult.OK==openDlg.ShowDialog())
+                    {
+                        fileName = openDlg.FileName;
+                        txtContent.LoadFile(fileName);
+                        this.Text="My notepad"+fileName;
+                    }
+                    break;
+            }
+        }
+        void saveFile()
+        {
+            if(fileName==null)
+            {
+                SaveFileDialog saveDlg = new SaveFileDialog();
+                if(DialogResult.OK==saveDlg.ShowDialog())
+                {
+                    fileName = saveDlg.FileName;
+                    this.Text += " " + fileName;
+                }
+            }
+            else
+            {
+                txtContent.SaveFile(fileName, RichTextBoxStreamType.RichText);
+            }
+        }
+        private void NotepadClosing(object sender,FormClosingEventArgs e)
+        {
+            saveFile();
+        }
+        static void Main(String[] args)
+        {
+            Application.Run(new NotepadForm());
+        }
+    }
+}
 
 
 
+
+![image](https://user-images.githubusercontent.com/98141711/159864844-2fcfa44b-b85c-4034-a71a-b5c52e8d43df.png)
 
 
 
