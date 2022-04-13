@@ -1477,106 +1477,378 @@ namespace guessing_game<br>
 <br>
 <br>
 **27.Develop an application to create a notepad.**<br>
-using System;
-using System.IO;
-using System.Windows.Forms;
-using System.Drawing;
+using System;<br>
+using System.IO;<br>
+using System.Windows.Forms;<br>
+using System.Drawing;<br>
+namespace notepad<br>
+{<br>
+    class NotepadForm : Form<br>
+    {<br>
+        private string fileName;<br>
+        private RichTextBox txtContent;<br>
+        private ToolBar toolBar1 ;<br>
+        internal NotepadForm()<br>
+        {<br>
+            fileName = null;<br>
+            initializeComponents();<br>
+        }<br>
+        void initializeComponents()<br>
+        {<br>
+            this.Text = "My notepad";<br>
+            this.MinimumSize = new Size(600, 450);<br>
+            this.FormClosing += new FormClosingEventHandler(NotepadClosing);<br>
+            this.MaximizeBox = true;<br>
+            toolBar1 = new ToolBar();<br>
+            toolBar1.Font = new Font("Arial", 16);<br>
+            toolBar1.Padding = new Padding(4);<br>
+            toolBar1.ButtonClick += new ToolBarButtonClickEventHandler(toolBar1Clicked);<br>
+            ToolBarButton toolBar1Button1= new ToolBarButton();<br>
+            ToolBarButton toolBar1Button2 = new ToolBarButton();<br>
+            ToolBarButton toolBar1Button3 = new ToolBarButton();<br>
+            toolBar1Button1.Text = "New";<br>
+            toolBar1Button2.Text = "Open";<br>
+            toolBar1Button3.Text = "Save";<br>
+            toolBar1.Buttons.Add(toolBar1Button1);<br>
+            toolBar1.Buttons.Add(toolBar1Button2);<br>
+            toolBar1.Buttons.Add(toolBar1Button3);<br>
+            txtContent = new RichTextBox();<br>
+            txtContent.Size = this.ClientSize;<br>
+            txtContent.Height = toolBar1.Height;<br>
+            txtContent.Top = toolBar1.Height;<br>
+            txtContent.Anchor = AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Top | AnchorStyles.Bottom;<br>
+            txtContent.Font = new Font("Arial", 16);<br>
+            txtContent.AcceptsTab = true;<br>
+            txtContent.Padding = new Padding(8);<br>
+            this.Controls.Add(toolBar1);<br>
+            this.Controls.Add(txtContent);<br>
+        }<br>
+        private void toolBar1Clicked(Object sender,ToolBarButtonClickEventArgs e)<br>
+        {<br>
+            saveFile();<br>
+            switch (toolBar1.Buttons.IndexOf(e.Button))<br>
+            {<br>
+                case 0:this.Text += "My notepad";<br>
+                    txtContent.Text = string.Empty;<br>
+                    fileName = null;<br>
+                    break;<br>
+                case 1:OpenFileDialog openDlg = new OpenFileDialog();<br>
+                        if(DialogResult.OK==openDlg.ShowDialog())<br>
+                    {<br>
+                        fileName = openDlg.FileName;<br>
+                        txtContent.LoadFile(fileName);<br>
+                        this.Text="My notepad"+fileName;<br>
+                    }<br>
+                    break;<br>
+            }<br>
+        }<br>
+        void saveFile()<br>
+        {<br>
+            if(fileName==null)<br>
+            {<br>
+                SaveFileDialog saveDlg = new SaveFileDialog();<br>
+                if(DialogResult.OK==saveDlg.ShowDialog())<br>
+                {<br>
+                    fileName = saveDlg.FileName;<br>
+                    this.Text += " " + fileName;<br>
+                }<br>
+            }<br>
+            else<br>
+            {<br>
+                txtContent.SaveFile(fileName, RichTextBoxStreamType.RichText);<br>
+            }<br>
+        }<br>
+        private void NotepadClosing(object sender,FormClosingEventArgs e)<br>
+        {<br>
+            saveFile();<br>
+        }<br>
+        static void Main(String[] args)<br>
+        {<br>
+            Application.Run(new NotepadForm());<br>
+        }<br>
+    }<br>
+}<br>
+![image](https://user-images.githubusercontent.com/98141711/159864844-2fcfa44b-b85c-4034-a71a-b5c52e8d43df.png)<br>
+<br>
+<br>
+**28.C# progarm to perform reversal,padding and trimming operations on string.**
+using System;<br>
+using System.Collections.Generic;<br>
+using System.ComponentModel;<br>
+using System.Data;<br>
+using System.Drawing;<br>
+using System.Linq;<br>
+using System.Text;<br>
+using System.Threading.Tasks;<br>
+using System.Windows.Forms;<br>
+using System.Drawing.Drawing2D;<br>
 
-namespace notepad
-{
-    class NotepadForm : Form
-    {
-        private string fileName;
-        private RichTextBox txtContent;
-        private ToolBar toolBar1 ;
-        internal NotepadForm()
-        {
-            fileName = null;
-            initializeComponents();
-        }
-        void initializeComponents()
-        {
-            this.Text = "My notepad";
-            this.MinimumSize = new Size(600, 450);
-            this.FormClosing += new FormClosingEventHandler(NotepadClosing);
-            this.MaximizeBox = true;
-            toolBar1 = new ToolBar();
-            toolBar1.Font = new Font("Arial", 16);
-            toolBar1.Padding = new Padding(4);
-            toolBar1.ButtonClick += new ToolBarButtonClickEventHandler(toolBar1Clicked);
-            ToolBarButton toolBar1Button1= new ToolBarButton();
-            ToolBarButton toolBar1Button2 = new ToolBarButton();
-            ToolBarButton toolBar1Button3 = new ToolBarButton();
-            toolBar1Button1.Text = "New";
-            toolBar1Button2.Text = "Open";
-            toolBar1Button3.Text = "Save";
-            toolBar1.Buttons.Add(toolBar1Button1);
-            toolBar1.Buttons.Add(toolBar1Button2);
-            toolBar1.Buttons.Add(toolBar1Button3);
-            txtContent = new RichTextBox();
-            txtContent.Size = this.ClientSize;
-            txtContent.Height = toolBar1.Height;
-            txtContent.Top = toolBar1.Height;
-            txtContent.Anchor = AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Top | AnchorStyles.Bottom;
-            txtContent.Font = new Font("Arial", 16);
-            txtContent.AcceptsTab = true;
-            txtContent.Padding = new Padding(8);
-            this.Controls.Add(toolBar1);
-            this.Controls.Add(txtContent);
-        }
-        private void toolBar1Clicked(Object sender,ToolBarButtonClickEventArgs e)
-        {
-            saveFile();
-            switch (toolBar1.Buttons.IndexOf(e.Button))
-            {
-                case 0:this.Text += "My notepad";
-                    txtContent.Text = string.Empty;
-                    fileName = null;
-                    break;
-                case 1:OpenFileDialog openDlg = new OpenFileDialog();
-                        if(DialogResult.OK==openDlg.ShowDialog())
-                    {
-                        fileName = openDlg.FileName;
-                        txtContent.LoadFile(fileName);
-                        this.Text="My notepad"+fileName;
-                    }
-                    break;
-            }
-        }
-        void saveFile()
-        {
-            if(fileName==null)
-            {
-                SaveFileDialog saveDlg = new SaveFileDialog();
-                if(DialogResult.OK==saveDlg.ShowDialog())
-                {
-                    fileName = saveDlg.FileName;
-                    this.Text += " " + fileName;
-                }
-            }
-            else
-            {
-                txtContent.SaveFile(fileName, RichTextBoxStreamType.RichText);
-            }
-        }
-        private void NotepadClosing(object sender,FormClosingEventArgs e)
-        {
-            saveFile();
-        }
-        static void Main(String[] args)
-        {
-            Application.Run(new NotepadForm());
-        }
-    }
-}
-
-
-
-
-![image](https://user-images.githubusercontent.com/98141711/159864844-2fcfa44b-b85c-4034-a71a-b5c52e8d43df.png)
-
-
-
+namespace WindowsFormsApp10<br>
+{<br>
+public partial class Form1 : Form<br>
+{<br>
+private Node root;<br>
+public Form1()<br>
+{<br>
+InitializeComponent();<br>
+this.root = null;<br>
+test();<br>
+}<br>
+void test()<br>
+{<br>
+textBox2.Text = "5";<br>
+btnAdd_Click_1(btnAdd, null);<br>
+textBox2.Text = "3";<br>
+btnAdd_Click_1(btnAdd, null);<br>
+textBox2.Text = "2";<br>
+btnAdd_Click_1(btnAdd, null);<br>
+textBox2.Text = "1";<br>
+btnAdd_Click_1(btnAdd, null);<br>
+textBox2.Text = "4";<br>
+btnAdd_Click_1(btnAdd, null);<br>
+textBox2.Text = "7";<br>
+btnAdd_Click_1(btnAdd, null);<br>
+textBox2.Text = "6";<br>
+btnAdd_Click_1(btnAdd, null);<br>
+textBox2.Text = "8";<br>
+btnAdd_Click_1(btnAdd, null);<br>
+}<br>
+private void btnAdd_Click_1(object sender, EventArgs e)<br>
+{<br>
+int value = int.Parse(textBox2.Text);<br>
+if (root == null)<br>
+root = new Node(value);<br>
+else<br>
+{<br>
+if (root.Add(value) == false)<br>
+MessageBox.Show("The value already exists!");<br>
+}<br>
+drawTree();<br>
+}<br>
+private void btnCreate_Click_1(object sender, EventArgs e)<br>
+{<br>
+root = null;<br>
+pictureBox2.Image = null;<br>
+}<br>
+private void btnRemove_Click_1(object sender, EventArgs e)<br>
+{<br>
+int value = int.Parse(textBox2.Text);<br>
+if (root != null)<br>
+{<br>
+bool status = root.Remove(value, root, ref root);<br>
+if (status == false)<br>
+{<br>
+MessageBox.Show("the value does not exists");<br>
+}<br>
+}<br>
+drawTree();<br>
+}<br>
+private void btnSearch_Click_1(object sender, EventArgs e)<br>
+{<br>
+string msg;<br>
+int value = int.Parse(textBox2.Text);<br>
+if (root == null)<br>
+{<br>
+msg = "Tree is empty";<br>
+}<br>
+else<br>
+{<br>
+if (root.Exists(value))<br>
+{<br>
+msg = "Value found";<br>
+}<br>
+else<br>
+{<br>
+msg = "Value not found";<br>
+}<br>
+}<br>
+MessageBox.Show(msg);<br>
+}<br>
+void drawTree()<br>
+{<br>
+if (root != null)<br>
+pictureBox2.Image = root.Draw();<br>
+else<br>
+pictureBox2.Image = null;<br>
+this.Update();<br>
+}<br>
+}<br>
+class Node<br>
+{<br>
+internal Node left { get; set; }<br>
+internal Node right { get; set; }<br>
+internal int value;<br>
+internal int center = 12;<br>
+private static Bitmap nodeBg = new Bitmap(30, 25);<br>
+private static Font font = new Font("Arial", 14);<br>
+internal Node(int value)<br>
+{<br>
+this.value = value;<br>
+}<br>
+internal bool Add(int value)<br>
+{<br>
+Node node = new Node(value);<br>
+if (value < this.value)<br>
+{<br>
+if (this.left == null)<br>
+{<br>
+this.left = node;<br>
+return true;<br>
+}<br>
+else<br>
+return this.left.Add(value);<br>
+}<br>
+else if (value > this.value)<br>
+{<br>
+if (this.right == null)<br>
+{<br>
+this.right = node;<br>
+return true;<br>
+}<br>
+else<br>
+return this.right.Add(value);<br>
+}<br>
+return false;<br>
+}<br>
+internal bool Remove(int value, Node parent, ref Node root)<br>
+{<br>
+if (value < this.value)<br>
+{<br>
+if (left != null)<br>
+{<br>
+return left.Remove(value, this, ref root);<br>
+}<br>
+}<br>
+else if (value > this.value)<br>
+{<br>
+if (right != null)<br>
+{<br>
+return right.Remove(value, this, ref root);<br>
+}<br>
+}<br>
+else if (value == this.value)<br>
+{<br>
+bool isLeft = (this == parent.left);<br>
+if (left == null && right == null)<br>
+{<br>
+if (root == this)<br>
+root = null;<br>
+else<br>
+if (isLeft) parent.left = null; else parent.right = null;<br>
+}<br>
+else if (right == null)<br>
+{<br>
+if (isLeft) parent.left = left; else parent.right = left;<br>
+if (root == this)<br>
+root = left;<br>
+}<br>
+else<br>
+{<br>
+if (right.left == null)<br>
+{<br>
+right.left = left;<br>
+if (isLeft) parent.left = right;<br>
+else<br>
+parent.right = right;<br>
+if (root == this)<br>
+root = right;<br>
+}<br>
+else<br>
+{<br>
+Node node = right;<br>
+while (node.left.left != null)<br>
+node = node.left;<br>
+Console.WriteLine("Node: " + node.value);<br>
+this.value = node.left.value;<br>
+Console.WriteLine("here");<br>
+node.left = null;<br>
+}<br>
+}<br>
+return true;<br>
+}<br>
+return false;<br>
+}<br>
+public Image Draw()<br>
+{<br>
+Size lSize = new Size(nodeBg.Width / 2, 0);<br>
+Size rSize = new Size(nodeBg.Width / 2, 0);<br>
+Image lNodeImg = null;<br>
+Image rNodeImg = null;<br>
+int lCenter = 0, rCenter = 0;<br>
+if (this.left != null)<br>
+{<br>
+lNodeImg = left.Draw();<br>
+lSize = lNodeImg.Size;<br>
+this.center = lSize.Width;<br>
+lCenter = left.center;<br>
+}<br>
+if (this.right != null)<br>
+{<br>
+rNodeImg = right.Draw();<br>
+rSize = rNodeImg.Size;<br>
+rCenter = right.center;<br>
+}<br>
+int maxHeight = (lSize.Height < rSize.Height) ? rSize.Height : lSize.Height;<br>
+if (maxHeight > 0) maxHeight += 35;<br>
+Size resultSize = new Size(lSize.Width + rSize.Width, nodeBg.Size.Height +
+maxHeight);<br>
+Bitmap result = new Bitmap(resultSize.Width, resultSize.Height);<br>
+Graphics g = Graphics.FromImage(result);<br>
+g.SmoothingMode = SmoothingMode.HighQuality;<br>
+g.FillRectangle(Brushes.White, new Rectangle(new Point(0, 0), resultSize));<br>
+g.DrawImage(nodeBg, lSize.Width - nodeBg.Width / 2, 0);<br>
+string str = "" + value;<br>
+g.DrawString(str, font, Brushes.Black, lSize.Width - nodeBg.Width / 2 + 7,
+nodeBg.Height / 2f - 12);<br>
+Pen pen = new Pen(Brushes.Black, 1.2f);<br>
+float x1 = center;<br>
+float y1 = nodeBg.Height;<br>
+float y2 = nodeBg.Height + 35;<br>
+float x2 = lCenter;<br>
+var h = Math.Abs(y2 - y1);<br>
+var w = Math.Abs(x2 - x1);<br>
+if (lNodeImg != null)<br>
+{<br>
+g.DrawImage(lNodeImg, 0, nodeBg.Size.Height + 35);<br>
+var points1 = new List<br>
+{<br>
+new PointF(x1, y1),<br>
+new PointF(x1 - w/6, y1 + h/3.5f),<br>
+new PointF(x2 + w/6, y2 - h/3.5f),<br>
+new PointF(x2, y2),<br>
+};<br>
+g.DrawCurve(pen, points1.ToArray(), 0.5f);<br>
+}<br>
+if (rNodeImg != null)<br>
+{<br>
+g.DrawImage(rNodeImg, lSize.Width, nodeBg.Size.Height + 35);<br>
+x2 = rCenter + lSize.Width;<br>
+w = Math.Abs(x2 - x1);<br>
+var points = new List<br>
+{<br>
+new PointF(x1, y1),<br>
+new PointF(x1 + w/6, y1 + h/3.5f),<br>
+new PointF(x2 - w/6, y2 - h/3.5f),<br>
+new PointF(x2, y2)<br>
+};<br>
+g.DrawCurve(pen, points.ToArray(), 0.5f);<br>
+}<br>
+return result;<br>
+}<br>
+public bool Exists(int value)<br>
+{<br>
+bool res = value == this.value;<br>
+if (!res && left != null)<br>
+res = left.Exists(value);<br>
+if (!res && right != null)<br>
+res = right.Exists(value);<br>
+return res;<br>
+}<br>
+}<br>
+}<br>
+<br>
+<br>
+<br>
 
 
 
