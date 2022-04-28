@@ -1849,261 +1849,261 @@ return res;<br>
 <br>
 <br>
 <br>
-**29.**
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using System.Drawing.Drawing2D;
-namespace reverse_padding_and_trimming
-{
-    public partial class Form1 : Form
-    {
-        private Node root;
-        public Form1()
-        {
-            InitializeComponent();
-            this.root = null;
-            test();
-        }
-        void test()
-        {
-            textBox1.Text = "5";
+**29.**<br>
+using System;<br>
+using System.Collections.Generic;<br>
+using System.ComponentModel;<br>
+using System.Data;<br>
+using System.Drawing;<br>
+using System.Linq;<br>
+using System.Text;<br>
+using System.Threading.Tasks;<br>
+using System.Windows.Forms;<br>
+using System.Drawing.Drawing2D;<br>
+namespace reverse_padding_and_trimming<br>
+{<br>
+    public partial class Form1 : Form<br>
+    {<br>
+        private Node root;<br>
+        public Form1()<br>
+        {<br>
+            InitializeComponent();<br>
+            this.root = null;<br>
+            test();<br>
+        }<br>
+        void test()<br>
+        {<br>
+            textBox1.Text = "5";<br>
+            btnAdd_Click(btnAdd, null);<br>
+            textBox1.Text = "3";<br>
+            btnAdd_Click(btnAdd, null);<br>
+            textBox1.Text = "2";<br>
+            btnAdd_Click(btnAdd, null);<br>
+            textBox1.Text = "1";<br>
+            btnAdd_Click(btnAdd, null);<br>
+            textBox1.Text = "4";<br>
             btnAdd_Click(btnAdd, null);
-            textBox1.Text = "3";
-            btnAdd_Click(btnAdd, null);
-            textBox1.Text = "2";
-            btnAdd_Click(btnAdd, null);
-            textBox1.Text = "1";
-            btnAdd_Click(btnAdd, null);
-            textBox1.Text = "4";
-            btnAdd_Click(btnAdd, null);
-            textBox1.Text = "7";
-            btnAdd_Click(btnAdd, null);
-            textBox1.Text = "6";
-            btnAdd_Click(btnAdd, null);
-            textBox1.Text = "8";
-            btnAdd_Click(btnAdd, null);
-        }
+            textBox1.Text = "7";<br>
+            btnAdd_Click(btnAdd, null);<br>
+            textBox1.Text = "6";<br>
+            btnAdd_Click(btnAdd, null);<br>
+            textBox1.Text = "8";<br>
+            btnAdd_Click(btnAdd, null);<br>
+        }<br>
 
         
 
-        private void button2_Click(object sender, EventArgs e)
-        {
-            int value = int.Parse(textBox1.Text);
-            if (root != null)
-            {
-                bool status = root.Remove(value, root, ref root);
-                if (status == false)
-                {
-                    MessageBox.Show("the value does not exists");
-                }
-            }
-            drawTree();
-        }
+        private void button2_Click(object sender, EventArgs e)<br>
+        {<br>
+            int value = int.Parse(textBox1.Text);<br>
+            if (root != null)<br>
+            {<br>
+                bool status = root.Remove(value, root, ref root);<br>
+                if (status == false)<br>
+                {<br>
+                    MessageBox.Show("the value does not exists");<br>
+                }<br>
+            }<br>
+            drawTree();<br>
+        }<br>
 
-        private void button3_Click(object sender, EventArgs e)
-        {
-            root = null;
-            pictureBox1.Image = null;
-        }
+        private void button3_Click(object sender, EventArgs e)<br>
+        {<br>
+            root = null;<br>
+            pictureBox1.Image = null;<br>
+        }<br>
 
-        private void button4_Click(object sender, EventArgs e)
-        {
-            string msg;
-            int value = int.Parse(textBox1.Text);
-            if (root == null)
-            {
-                msg = "Tree is empty";
-            }
-            else
-            {
-                if (root.Exists(value))
-                {
-                    msg = "Value found";
-                }
-                else
-                {
-                    msg = "Value not found";
-                }
-            }
-            MessageBox.Show(msg);
-        }
-        void drawTree()
-        {
-            if (root != null)
-                pictureBox1.Image = root.Draw();
-            else
-                pictureBox1.Image = null;
-            this.Update();
-        }
+        private void button4_Click(object sender, EventArgs e)<br>
+        {<br>
+            string msg;<br>
+            int value = int.Parse(textBox1.Text);<br>
+            if (root == null)<br>
+            {<br>
+                msg = "Tree is empty";<br>
+            }<br>
+            else<br><br><br><br>
+            {<br><br><br><br>
+                if (root.Exists(value))<br><br><br><br>
+                {<br><br><br><br>
+                    msg = "Value found";<br><br><br><br>
+                }<br><br><br><br>
+                else<br><br><br><br>
+                {<br><br><br><br>
+                    msg = "Value not found";<br><br><br><br>
+                }<br><br><br><br>
+            }<br><br><br><br>
+            MessageBox.Show(msg);<br><br><br><br>
+        }<br><br><br><br>
+        void drawTree()<br><br><br><br>
+        {<br><br><br><br>
+            if (root != null)<br><br><br><br>
+                pictureBox1.Image = root.Draw();<br><br><br><br>
+            else<br><br><br><br>
+                pictureBox1.Image = null;<br><br><br><br>
+            this.Update();<br><br><br><br>
+        }<br><br><br><br>
 
-        private void btnAdd_Click(object sender, EventArgs e)
-        {
-            int value = int.Parse(textBox1.Text);
-            if (root == null)
-                root = new Node(value);
-            else
-            {
-                if (root.Add(value) == false)
-                    MessageBox.Show("The value already exists!");
-            }
-            drawTree();
-        }
-    }
+        private void btnAdd_Click(object sender, EventArgs e)<br><br><br><br>
+        {<br><br><br><br>
+            int value = int.Parse(textBox1.Text);<br><br><br><br>
+            if (root == null)<br><br><br><br>
+                root = new Node(value);<br><br><br><br>
+            else<br><br><br><br>
+            {<br><br><br><br>
+                if (root.Add(value) == false)<br><br><br><br>
+                    MessageBox.Show("The value already exists!");<br><br><br><br>
+            }<br><br><br><br>
+            drawTree();<br><br><br><br>
+        }<br><br><br><br>
+    }<br><br><br>
     
-}
-class Node
-{
-    internal Node left { get; set; }
-    internal Node right { get; set; }
-    internal int value;
-    internal int center = 12;
-    private static Bitmap nodeBg = new Bitmap(30, 25);
-    private static Font font = new Font("Arial", 14);
-    internal Node(int value)
-    {
-        this.value = value;
+}<br><br><br>
+class Node<br><br><br>
+{<br><br><br>
+    internal Node left { get; set; }<br><br><br>
+    internal Node right { get; set; }<br><br><br>
+    internal int value;<br><br><br>
+    internal int center = 12;<br><br><br>
+    private static Bitmap nodeBg = new Bitmap(30, 25);<br><br><br>
+    private static Font font = new Font("Arial", 14);<br><br><br>
+    internal Node(int value)<br><br><br>
+    {<br><br><br>
+        this.value = value;<br><br><br>
     }
-    internal bool Add(int value)
-    {
-        Node node = new Node(value);
-        if (value < this.value)
-        {
-            if (this.left == null)
-            {
-                this.left = node;
-                return true;
-            }
-            else
-                return this.left.Add(value);
-        }
-        else if (value > this.value)
-        {
-            if (this.right == null)
-            {
-                this.right = node;
-                return true;
-            }
-            else
-                return this.right.Add(value);
-        }
-        return false;
-    }
-    internal bool Remove(int value, Node parent, ref Node root)
-    {
-        if (value < this.value)
-        {
-            if (left != null)
-            {
-                return left.Remove(value, this, ref root);
-            }
-        }
-        else if (value > this.value)
-        {
-            if (right != null)
-            {
-                return right.Remove(value, this, ref root);
-            }
-        }
-        else if (value == this.value)
-        {
-            bool isLeft = (this == parent.left);
-            if (left == null && right == null)
+    internal bool Add(int value)<br><br><br>
+    {<br><br><br>
+        Node node = new Node(value);<br><br><br>
+        if (value < this.value)<br><br><br>
+        {<br><br><br>
+            if (this.left == null)<br><br><br>
+            {<br><br><br>
+                this.left = node;<br><br><br>
+                return true;<br><br><br>
+            }<br><br><br>
+            else<br><br><br>
+                return this.left.Add(value);<br><br><br>
+        }<br><br><br>
+        else if (value > this.value)<br><br><br>
+        {<br><br><br>
+            if (this.right == null)<br><br><br>
+            {<br><br><br>
+                this.right = node;<br><br><br>
+                return true;<br><br>
+            }<br><br>
+            else<br><br>
+                return this.right.Add(value);<br><br>
+        }<br><br>
+        return false;<br><br>
+    }<br><br>
+    internal bool Remove(int value, Node parent, ref Node root)<br><br>
+    {<br><br>
+        if (value < this.value)<br><br>
+        {<br><br>
+            if (left != null)<br><br>
+            {<br><br>
+                return left.Remove(value, this, ref root);<br><br>
+            }<br><br>
+        }<br><br>
+        else if (value > this.value)<br><br>
+        {<br><br>
+            if (right != null)<br><br>
+            {<br><br>
+                return right.Remove(value, this, ref root);<br><br>
+            }<br><br>
+        }<br><br>
+        else if (value == this.value)<br><br>
+        {<br><br>
+            bool isLeft = (this == parent.left);<br><br>
+            if (left == null && right == null)<br><br>
 
-            {
-                if (root == this)
-                    root = null;
-                else
-                if (isLeft) parent.left = null; else parent.right = null;
-            }
-            else if (right == null)
-            {
-                if (isLeft) parent.left = left; else parent.right = left;
-                if (root == this)
-                    root = left;
-            }
-            else
-            {
-                if (right.left == null)
-                {
-                    right.left = left;
-                    if (isLeft) parent.left = right;
-                    else
-                        parent.right = right;
-                    if (root == this)
-                        root = right;
-                }
-                else
-                {
-                    Node node = right;
-                    while (node.left.left != null)
-                        node = node.left;
-                    Console.WriteLine("Node: " + node.value);
-                    this.value = node.left.value;
-                    Console.WriteLine("here");
-                    node.left = null;
-                }
-            }
-            return true;
-        }
-        return false;
-    }
-    public Image Draw()
-    {
-        Size lSize = new Size(nodeBg.Width / 2, 0);
-        Size rSize = new Size(nodeBg.Width / 2, 0);
-        Image lNodeImg = null;
-        Image rNodeImg = null;
-        int lCenter = 0, rCenter = 0;
+            {<br><br>
+                if (root == this)<br><br>
+                    root = null;<br><br>
+                else<br><br>
+                if (isLeft) parent.left = null; else parent.right = null;<br><br>
+            }<br>
+            else if (right == null)<br>
+            {<br>
+                if (isLeft) parent.left = left; else parent.right = left;<br>
+                if (root == this)<br>
+                    root = left;<br>
+            }<br>
+            else<br>
+            {<br>
+                if (right.left == null)<br>
+                {<br>
+                    right.left = left;<br>
+                    if (isLeft) parent.left = right;<br>
+                    else<br>
+                        parent.right = right;<br>
+                    if (root == this)<br>
+                        root = right;<br>
+                }<br>
+                else<br>
+                {<br>
+                    Node node = right;<br>
+                    while (node.left.left != null)<br>
+                        node = node.left;<br>
+                    Console.WriteLine("Node: " + node.value);<br>
+                    this.value = node.left.value;<br>
+                    Console.WriteLine("here");<br>
+                    node.left = null;<br>
+                }<br>
+            }<br>
+            return true;<br>
+        }<br>
+        return false;<br>
+    }<br>
+    public Image Draw()<br>
+    {<br><br>
+        Size lSize = new Size(nodeBg.Width / 2, 0);<br><br>
+        Size rSize = new Size(nodeBg.Width / 2, 0);<br><br>
+        Image lNodeImg = null;<br><br>
+        Image rNodeImg = null;<br><br>
+        int lCenter = 0, rCenter = 0;<br><br>
 
-        if (this.left != null)
-            {
-            lNodeImg = left.Draw();
-            lSize = lNodeImg.Size;
-            this.center = lSize.Width;
-            lCenter = left.center;
-        }
-            if (this.right != null)
-            {
-            rNodeImg = right.Draw();
-            rSize = rNodeImg.Size;
-            rCenter = right.center;
-        }
-        int maxHeight = (lSize.Height < rSize.Height) ? rSize.Height : lSize.Height;
-            if (maxHeight > 0) maxHeight += 35;
+        if (this.left != null)<br><br>
+            {<br><br>
+            lNodeImg = left.Draw();<br><br>
+            lSize = lNodeImg.Size;<br><br>
+            this.center = lSize.Width;<br><br>
+            lCenter = left.center;<br><br>
+        }<br><br>
+            if (this.right != null)<br><br>
+            {<br><br>
+            rNodeImg = right.Draw();<br><br>
+            rSize = rNodeImg.Size;<br><br>
+            rCenter = right.center;<br><br>
+        }<br><br>
+        int maxHeight = (lSize.Height < rSize.Height) ? rSize.Height : lSize.Height;<br><br>
+            if (maxHeight > 0) maxHeight += 35;<br><br>
         Size resultSize = new Size(lSize.Width + rSize.Width, nodeBg.Size.Height +
-maxHeight);
-        Bitmap result = new Bitmap(resultSize.Width, resultSize.Height);
+maxHeight);<br><br>
+        Bitmap result = new Bitmap(resultSize.Width, resultSize.Height);<br><br>
 
-        Graphics g = Graphics.FromImage(result);
-        g.SmoothingMode = SmoothingMode.HighQuality;
-        g.FillRectangle(Brushes.White, new Rectangle(new Point(0, 0), resultSize));
-        g.DrawImage(nodeBg, lSize.Width - nodeBg.Width / 2, 0);
-        string str = "" + value;
+        Graphics g = Graphics.FromImage(result);<br><br>
+        g.SmoothingMode = SmoothingMode.HighQuality;<br><br>
+        g.FillRectangle(Brushes.White, new Rectangle(new Point(0, 0), resultSize));<br><br>
+        g.DrawImage(nodeBg, lSize.Width - nodeBg.Width / 2, 0);<br><br>
+        string str = "" + value;<br><br>
         g.DrawString(str, font, Brushes.Black, lSize.Width - nodeBg.Width / 2 + 7,
-       nodeBg.Height / 2f - 12);
-        Pen pen = new Pen(Brushes.Black, 1.2f);
-        float x1 = center;
-        float y1 = nodeBg.Height;
-        float y2 = nodeBg.Height + 35;
-        float x2 = lCenter;
-        var h = Math.Abs(y2 - y1);
-        var w = Math.Abs(x2 - x1);
-            if (lNodeImg != null)
-            {
-            g.DrawImage(lNodeImg, 0, nodeBg.Size.Height + 35);
-            var points1 = new List<PointF>
-{
-                new PointF(x1, y1), new PointF(x1 - w / 6, y1 + h / 3.5f), new PointF(x2 + w / 6, y2 - h / 3.5f), new PointF(x2, y2), };
-            g.DrawCurve(pen, points1.ToArray(), 0.5f);
-        }
-        if (rNodeImg != null)
+       nodeBg.Height / 2f - 12);<br><br>
+        Pen pen = new Pen(Brushes.Black, 1.2f);<br>
+        float x1 = center;<br>
+        float y1 = nodeBg.Height;<br>
+        float y2 = nodeBg.Height + 35;<br>
+        float x2 = lCenter;<br>
+        var h = Math.Abs(y2 - y1);<br>
+        var w = Math.Abs(x2 - x1);<br>
+            if (lNodeImg != null)<br>
+            {<br>
+            g.DrawImage(lNodeImg, 0, nodeBg.Size.Height + 35);<br>
+            var points1 = new List<PointF><br>
+{<br>
+                new PointF(x1, y1), new PointF(x1 - w / 6, y1 + h / 3.5f), new PointF(x2 + w / 6, y2 - h / 3.5f), new PointF(x2, y2), };<br>
+            g.DrawCurve(pen, points1.To<br>Array(), 0.5f);<br>
+        }<br>
+        if (rNodeImg != null)<br>
         {
             g.DrawImage(rNodeImg, lSize.Width, nodeBg.Size.Height + 35);
             x2 = rCenter + lSize.Width;
@@ -2130,6 +2130,72 @@ new PointF(x1, y1), new PointF(x1 + w/6, y1 + h/3.5f), new PointF(x2 - w/6, y2 -
    <br>
    <br>
    <br>
+    **30.Write a program to convert convert money currency.**
+    using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace money_conversion
+{
+    public partial class Form1 : Form
+    {
+        public Form1()
+        {
+            InitializeComponent();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            {
+                label4.Visible = true;
+                if (textBox1.Text == "")
+                {
+                    label4.Text = "Enter the ammount";
+                }
+                else
+                {
+                    Double convertedamt = Convert.ToDouble(textBox1.Text);
+                    if (comboBox1.SelectedItem == "INR" && comboBox2.SelectedItem == "USD")
+                    {
+                        Double a = convertedamt / 74;
+                        label4.Text = a + "$";
+                    }
+                    else if (comboBox1.SelectedItem =="INR" && comboBox2.SelectedItem == "SAR")
+                    {
+
+                        Double a = convertedamt / 17;
+                        label4.Text = a + "SAR";
+                    }
+                    else if (comboBox1.SelectedItem == "INR" && comboBox2.SelectedItem == "EUR")
+                    {
+                        Double a = convertedamt / 11;
+                        label4.Text = a + "EUR";
+                    }
+                    else
+                    {
+                        label4.Text = "Please Enter the conversion code";
+                    }
+                }
+            }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            textBox1.Text = "";
+            label4.Text = "";
+        }
+    }
+}
+**Output:-**
+    ![image](https://user-images.githubusercontent.com/98141711/165699059-d2c44d0f-b880-4b4c-9dc6-565a51cff787.png)
+
+    
     
 
 
